@@ -1,0 +1,98 @@
+@import '@styles/mixins.scss';
+@import '@styles/vars.scss';
+
+.container {
+  @include container;
+  max-width: 800px;
+  margin-block: 2rem 4rem;
+}
+
+.shortInfo {
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headerText {
+  margin-block: 1rem 1.6rem;
+}
+
+.authorName {
+  font-weight: 500;
+}
+
+.image {
+  border-radius: 12px;
+  margin-block: 1.2rem;
+}
+
+.progressBar {
+  position: sticky;
+  left: 0;
+  transform-origin: left;
+  top: $DesktopHeader;
+  height: 5px;
+  background: linear-gradient(180deg, #6f89fc, #4b6bfb);
+}
+
+.content {
+  & p {
+    line-height: 1.8;
+  }
+
+  & h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-block: 2rem 0.9rem;
+  }
+
+  & ul {
+    margin-block: 1rem;
+    list-style: disc;
+
+    & li {
+      margin-block: 0.7rem;
+      margin-left: 1rem;
+    }
+  }
+
+  & a {
+    display: inline;
+    color: var(--blue);
+  }
+
+  & blockquote {
+    background-color: var(--gray-100);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-block: 1.6rem;
+    font-style: italic;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    border-left: 4px solid var(--gray-200);
+  }
+
+  & img {
+    margin-block: 2rem;
+    border-radius: 12px;
+    box-sizing: border-box;
+    // max-height: 500px;
+    width: 100%;
+  }
+}
+
+@media (max-width: $laptop) {
+  .progressBar {
+    top: $LaptopHeader;
+  }
+}
+
+@media (max-width: $mobileL) {
+  .progressBar {
+    top: $MobileHeader;
+  }
+}

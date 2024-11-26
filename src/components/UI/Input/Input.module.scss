@@ -1,0 +1,46 @@
+.wrapper {
+  position: relative;
+}
+
+.input {
+  padding: 8px 36px 8px 8px;
+  display: block;
+  border: 0px;
+  outline: none;
+  color: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.button {
+  font-size: 1.2rem;
+  flex-basis: 30px;
+  padding-inline: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.error {
+  color: var(--red);
+  margin-top: -8px;
+  text-align: start;
+  font-size: 0.9em;
+}
+
+.inputDefault {
+  background-color: var(--gray-50);
+  color: var(--gray-800);
+}
+
+.inputOutline {
+  background-color: transparent;
+  border: 1.6px solid var(--gray-200);
+  color: var(--gray-800);
+}

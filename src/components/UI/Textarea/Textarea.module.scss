@@ -1,0 +1,28 @@
+.textarea {
+  resize: none;
+  padding: 14px 8px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+}
+
+.error {
+  color: var(--red);
+  margin-top: -8px;
+  text-align: start;
+  font-size: 0.9em;
+}
+
+.default {
+  background-color: var(--gray-50);
+  color: var(--gray-800);
+}
+
+.outline {
+  background-color: transparent;
+  color: var(--gray-800);
+  border: 1.6px solid var(--gray-200);
+}

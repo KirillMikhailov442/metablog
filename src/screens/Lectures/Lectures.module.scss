@@ -1,0 +1,32 @@
+@import '@styles/vars.scss';
+
+.title {
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonView {
+  margin-top: 2rem;
+}
+
+@media (max-width: $laptop) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: calc($tablet - 100px)) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

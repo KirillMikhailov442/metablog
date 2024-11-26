@@ -1,0 +1,17 @@
+.button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  transition: all 0.5s ease;
+  font-weight: 600;
+}
+
+.default {
+  background: linear-gradient(180deg, #6f89fc, #4b6bfb);
+  color: white;
+}
+
+.outline {
+  border: 1px solid var(--gray-250);
+  background-color: transparent;
+  color: var(--gray-500);
+}

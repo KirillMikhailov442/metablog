@@ -1,0 +1,9 @@
+{
+ "header": {
+    "home": "Главная",
+    "about": "О нас",
+    "subjects": "Предметы",
+    "contact": "Контакт",
+    "searchbarPlaceholder": "Поиск..."
+ }   
+}

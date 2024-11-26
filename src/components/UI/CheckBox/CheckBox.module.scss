@@ -1,0 +1,43 @@
+.wrapper {
+  height: 28px;
+  width: 48px;
+  border-radius: 20px;
+  background-color: var(--gray-100);
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(180deg, #6f89fc, #4b6bfb);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.emulation {
+  position: absolute;
+  height: 24px;
+  aspect-ratio: 1;
+  top: 50%;
+  transform: translateX(2px) translateY(-50%);
+  background-color: white;
+  color: #3b3c4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  transition: all 0.5s ease;
+}
+
+.input:checked + .back {
+  opacity: 1;
+}
+
+.input:checked + .back + .emulation {
+  transform: translateX(calc(100% - 2px)) translateY(-50%);
+}

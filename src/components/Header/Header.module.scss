@@ -1,0 +1,193 @@
+@import '@styles/mixins.scss';
+@import '@styles/vars.scss';
+
+.header {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
+  z-index: $layerMax;
+  height: $DesktopHeader;
+}
+
+.container {
+  @include container(false);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1rem;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &Item {
+    padding: 15px;
+  }
+}
+
+.active {
+  color: var(--blue);
+}
+
+.primaryNav {
+  flex-wrap: wrap;
+}
+
+.secondaryNav {
+  gap: 40px;
+}
+
+.searchBar > input {
+  width: 160px;
+}
+
+.rightSide {
+  display: flex;
+}
+
+.humburger {
+  display: none;
+  margin-left: 1rem;
+
+  & > button {
+    padding: 0.6rem;
+  }
+}
+
+.mobileWrapper {
+  position: fixed;
+  height: calc(100dvh - $DesktopHeader);
+  width: 100dvw;
+  bottom: 0;
+  z-index: $layer4;
+  display: none;
+  transition: all 0.5s ease;
+  pointer-events: none;
+
+  &Show {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.mobileTranslater {
+  display: none;
+}
+
+.aside {
+  background-color: var(--white);
+  height: 100%;
+  width: 60%;
+  position: relative;
+  float: right;
+  right: -100%;
+  transition: right 0.5s ease;
+  pointer-events: all;
+  display: flex;
+
+  &Content {
+    margin: 20px;
+    flex-grow: 1;
+  }
+}
+
+.open {
+  right: 0;
+}
+
+.mobileList {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &Item {
+    padding-block: 10px;
+  }
+}
+
+.mobileSearchBar {
+  height: 50px !important;
+}
+
+.mobileSearchBar,
+.mobileCheckBox {
+  display: none !important;
+}
+
+.themeDark {
+  display: none;
+}
+
+html[theme='dark'] {
+  .themeDark {
+    display: block;
+  }
+  .themeLight {
+    display: none;
+  }
+}
+
+@media (max-width: $laptop) {
+  .nav {
+    display: none;
+  }
+
+  .secondaryNav {
+    gap: 15px;
+  }
+
+  .humburger {
+    display: block;
+  }
+
+  .container {
+    padding-block: 1rem;
+  }
+
+  .logo > img {
+    width: auto;
+    height: 30px;
+  }
+
+  .header {
+    height: $LaptopHeader;
+  }
+
+  .mobileWrapper {
+    height: calc(100dvh - $LaptopHeader);
+    display: block;
+  }
+}
+
+@media (max-width: calc($mobileL + 50px)) {
+  .list {
+    display: none;
+  }
+
+  .header {
+    height: $MobileHeader;
+  }
+
+  .mobileWrapper {
+    height: calc(100dvh - $MobileHeader);
+  }
+
+  .aside {
+    width: 100%;
+  }
+
+  .mobileSearchBar,
+  .mobileCheckBox {
+    display: flex !important;
+  }
+
+  .mobileTranslater {
+    display: block;
+  }
+}

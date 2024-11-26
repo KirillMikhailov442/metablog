@@ -1,0 +1,101 @@
+@import '@styles/mixins.scss';
+@import '@styles/vars.scss';
+
+.wrapper {
+  width: 100vw;
+  height: calc(100dvh - $DesktopHeader);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  z-index: $layerMax;
+  bottom: 0;
+  background-color: rgba(0 0 0 / 0.5);
+  backdrop-filter: blur(1px);
+}
+
+.searchbar {
+  width: 1040px;
+  padding-inline: 10px;
+  margin-top: 80px;
+}
+
+.form {
+  padding: 25px 40px;
+  display: flex;
+  gap: 20px;
+  background-color: var(--white);
+  border-radius: 16px;
+}
+
+.input {
+  flex-grow: 1;
+}
+
+.button {
+  flex-basis: 100px;
+}
+
+.result {
+  padding: 1.2rem;
+  border-radius: 16px;
+  background-color: var(--white);
+  margin-top: 10px;
+
+  &Content {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    max-height: 290px;
+  }
+
+  &Item {
+    & p {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-block: 1.5rem;
+}
+
+.item {
+  border-radius: 16px;
+  padding: 1rem;
+  transition: all 0.5s ease;
+  cursor: pointer;
+
+  & time {
+    font-size: 0.7em;
+    color: var(--gray-300);
+    margin-left: 1.5rem;
+  }
+
+  &:hover {
+    background-color: var(--blue-500);
+    color: var(--blue);
+  }
+}
+
+@media (max-width: $tablet) {
+  .searchbar {
+    margin-top: 0px;
+    padding-inline: 0px;
+  }
+
+  .form {
+    border-radius: 0px;
+    padding: 20px 10px;
+  }
+
+  .button {
+    flex-basis: 120px;
+  }
+
+  .result {
+    &Content {
+      max-height: 40vh;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+@import '@styles/mixins.scss';
+@import '@styles/vars.scss';
+
+.container {
+  @include container;
+  margin-block: 2rem;
+}
+
+.head {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 70dvh;
+  box-shadow: inset 0px -121px 60px 20px rgba(0, 0, 0, 0.48);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem 24%;
+  box-sizing: border-box;
+
+  & > h5 {
+    color: white;
+  }
+}
+
+.name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.count {
+  margin-bottom: 1.6rem;
+}
+
+@media (max-width: $laptop) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .head {
+    padding: 3rem 10%;
+  }
+}
+
+@media (max-width: calc($tablet - 100px)) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .head {
+    padding: 2rem 10%;
+
+    & > * {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media (max-width: $mobileS) {
+  .head {
+    padding: 1rem 10px;
+
+    & > * {
+      font-size: 1rem;
+    }
+  }
+}

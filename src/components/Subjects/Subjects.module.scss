@@ -1,0 +1,113 @@
+@import '@styles/mixins.scss';
+@import '@styles/vars.scss';
+
+.section {
+  margin-block: 3.5rem;
+  position: relative;
+}
+
+.subject {
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  margin-inline: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  box-shadow: inset 0px -121px 60px 2px rgba(0, 0, 0, 0.48);
+
+  & > h1::first-letter {
+    text-transform: uppercase;
+  }
+
+  & > svg {
+    opacity: 0.8;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.blue {
+  background: linear-gradient(180deg, #6f89fc, #4b6bfb);
+  color: white;
+}
+
+.yellow {
+  background: linear-gradient(180deg, #ffff33, #ffff00);
+  color: #181a2a;
+}
+
+.green {
+  background: linear-gradient(180deg, rgb(174, 215, 91), rgb(154, 205, 50));
+  color: white;
+}
+
+.red {
+  background: linear-gradient(180deg, #ff6a33, #ff4500);
+  color: white;
+}
+
+.violet {
+  background: linear-gradient(180deg, #a845b9, #9216a8);
+  color: white;
+}
+
+.orange {
+  background: linear-gradient(180deg, #ff9933, #ff8000);
+  color: white;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+
+  top: 50%;
+  transform: translateY(-50%) translateX(40%);
+}
+
+.carousel {
+  position: relative;
+  padding-top: 1.2rem;
+  padding-bottom: 3.2rem;
+}
+
+.dot {
+  cursor: pointer;
+  background-color: transparent;
+  background-color: var(--gray-200);
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  margin-inline: 5px;
+  display: inline;
+  transition: background-color 0.5s ease;
+
+  &:hover {
+    background-color: var(--blue);
+  }
+
+  &List {
+    position: absolute;
+    bottom: 0;
+  }
+
+  &Active {
+    background-color: var(--blue);
+  }
+}
+
+@media (max-width: $mobileL) {
+  .carousel button {
+    display: none;
+  }
+}

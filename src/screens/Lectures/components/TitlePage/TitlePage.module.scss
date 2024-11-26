@@ -1,0 +1,41 @@
+.wrapper {
+  margin-block: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  display: flex;
+  color: var(--gray-500);
+
+  & > span {
+    padding-inline: 10px;
+
+    & > b {
+      color: var(--gray-800);
+    }
+  }
+
+  & a {
+    color: var(--gray-600);
+  }
+}
+
+.home {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 1.5px;
+    background-color: var(--gray-100);
+  }
+}

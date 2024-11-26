@@ -1,0 +1,39 @@
+@import '@styles/vars.scss';
+
+.card {
+  padding: 16px 16px 24px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--gray-250);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border: 1px solid var(--blue);
+    transform: scale(1.04);
+  }
+}
+
+.img {
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin-block: 1rem;
+}
+
+.shortInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-400);
+}
+
+@media (max-width: $mobileL) {
+  .shortInfo {
+    font-size: 0.8rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}

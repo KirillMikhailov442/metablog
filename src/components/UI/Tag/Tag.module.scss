@@ -1,0 +1,46 @@
+.tag {
+  display: inline-block;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  font-weight: 500;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.sky {
+  background-color: var(--blue-500);
+  color: var(--blue);
+}
+
+.blue {
+  background: linear-gradient(180deg, #6f89fc, #4b6bfb);
+  color: white;
+}
+
+.yellow {
+  background: linear-gradient(180deg, #ffff33, #ffff00);
+  color: #181a2a;
+}
+
+.green {
+  background: linear-gradient(180deg, rgb(174, 215, 91), rgb(154, 205, 50));
+  color: white;
+}
+
+.red {
+  background: linear-gradient(180deg, #ff6a33, #ff4500);
+  color: white;
+}
+
+.violet {
+  background: linear-gradient(180deg, #a845b9, #9216a8);
+  color: white;
+}
+
+.orange {
+  background: linear-gradient(180deg, #ff9933, #ff8000);
+  color: white;
+}
