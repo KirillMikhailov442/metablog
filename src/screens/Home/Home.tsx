@@ -10,31 +10,44 @@ import client from '@/contentful';
 import Card from '@components/Card/Card';
 import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
 import { useTranslations } from 'next-intl';
+import getLocale, { Locales } from '@helpers/getLocale';
+import { useParams } from 'next/navigation';
+import Params from '@/types/params';
 
-const getLectures = async (limit: number) => {
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+import 'dayjs/locale/en';
+import 'dayjs/locale/zh';
+
+const getLectures = async (limit: number, locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<LectureEntrySkeleton>({
     content_type: 'lectures',
     limit,
     skip: 0,
+    locale: localeForReq,
   });
 
   return response;
 };
 
 const HomeScreen: FC = () => {
-  const [listOfLectures, setListLectures] = useState<ILecture[]>([]);
+  const [listOfLectures, setListLectures] = useState<
+    Omit<ILecture, 'contentRU' | 'titleRU' | 'subjectRU'>[]
+  >([]);
   const [paginationNumber, setPaginationNumber] = useState(10);
   const [lecturesTotal, setLecturesTotal] = useState(0);
+  const { locale } = useParams<Params>();
   const t = useTranslations('homePage');
 
   useEffect(() => {
     const request = async () => {
-      const data = await getLectures(paginationNumber);
+      const data = await getLectures(paginationNumber, locale);
       const newList = await data.items.map(lecture => ({
         slug: lecture.fields.slug,
-        title: lecture.fields.title,
+        title: locale == 'ru' ? lecture.fields.titleRU : lecture.fields.title,
         image: lecture.fields.image,
-        date: lecture.fields.date,
+        date: dayjs(lecture.sys.createdAt).locale(locale).format('D MMMM YYYY'),
         subject: lecture.fields.subject,
         content: lecture.fields.content,
       }));
@@ -51,7 +64,10 @@ const HomeScreen: FC = () => {
           <Hero
             {...listOfLectures[0]}
             subject={{
-              name: listOfLectures[0].subject.fields.name,
+              name:
+                locale == 'ru'
+                  ? listOfLectures[0].subject.fields.nameRU
+                  : listOfLectures[0].subject.fields.name,
               slug: listOfLectures[0].subject.fields.slug,
             }}
           />
@@ -66,7 +82,10 @@ const HomeScreen: FC = () => {
               <Card
                 {...lecture}
                 subject={{
-                  name: lecture.subject.fields.name,
+                  name:
+                    locale == 'ru'
+                      ? lecture.subject.fields.nameRU
+                      : lecture.subject.fields.name,
                   slug: lecture.subject.fields.slug,
                 }}
                 key={index}

@@ -9,6 +9,9 @@ import { motion } from 'framer-motion';
 import client from '@/contentful';
 import { ISubject, SubjectEntrySkeleton } from '@/types/subject';
 import { Link } from '@/navigation';
+import getLocale, { Locales } from '@helpers/getLocale';
+import { useParams } from 'next/navigation';
+import Params from '@/types/params';
 
 const responsive = {
   desktop: {
@@ -37,7 +40,9 @@ const CustomDot: FC<DotProps> = ({ onClick, active, ...props }) => {
   );
 };
 
-const Subject: FC<ISubject> = ({ slug, image, name }) => {
+const Subject: FC<
+  Omit<ISubject, 'nameRU' | 'description' | 'descriptionRU'>
+> = ({ slug, image, name }) => {
   return (
     <li>
       <Link
@@ -51,27 +56,38 @@ const Subject: FC<ISubject> = ({ slug, image, name }) => {
   );
 };
 
-const getSubjects = async () => {
+const getSubjects = async (locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<SubjectEntrySkeleton>({
     content_type: 'subjects',
+    locale: localeForReq,
   });
   return response.items;
 };
 
 const Subjects: FC = () => {
+  const { locale } = useParams<Params>();
+
   useEffect(() => {
     const request = async () => {
-      const data = await getSubjects();
-      const newList: ISubject[] = await data.map(subject => ({
+      const data = await getSubjects(locale);
+      const newList: Omit<
+        ISubject,
+        'nameRU' | 'description' | 'descriptionRU'
+      >[] = await data.map(subject => ({
         slug: subject.fields.slug,
-        name: subject.fields.name,
+        name: locale == 'ru' ? subject.fields.nameRU : subject.fields.name,
         image: subject.fields.image,
       }));
       setListSubjects(newList);
     };
     request();
   }, []);
-  const [listSubjects, setListSubjects] = useState<ISubject[]>([]);
+
+  const [listSubjects, setListSubjects] = useState<
+    Omit<ISubject, 'nameRU' | 'description' | 'descriptionRU'>[]
+  >([]);
+
   return (
     <motion.section
       initial={{ y: '20%', opacity: 0 }}

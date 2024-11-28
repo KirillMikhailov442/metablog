@@ -5,7 +5,6 @@ import styles from './Card.module.scss';
 import Image from 'next/image';
 import Tag from '@components/UI/Tag/Tag';
 import { motion } from 'framer-motion';
-import moment from 'moment';
 import { ILecture } from '@/types/lecture';
 import { ISubject } from '@/types/subject';
 import { Link } from '@/navigation';
@@ -49,9 +48,7 @@ const Card: FC<CardProps> = ({ title, image, slug, date, subject }, props) => {
         <Tag className={styles.tag} text={subject.name} slug={subject.slug} />
         <h4 className={styles.title}>{title}</h4>
         <div className={styles.shortInfo}>
-          <time className={styles.date}>
-            {moment(date).format('MMMM Do YYYY')}
-          </time>
+          <time className={styles.date}>{date}</time>
         </div>
       </Link>
     </motion.li>

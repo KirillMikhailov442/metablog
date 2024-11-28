@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Tag from '@components/UI/Tag/Tag';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import moment from 'moment';
 import { ILecture } from '@/types/lecture';
 import { ISubject } from '@/types/subject';
 import { Link } from '@/navigation';
@@ -36,9 +35,7 @@ const HeroDefault: FC<HeroProps> = ({ title, image, date, slug, subject }) => {
             <Tag text={subject.name} slug={subject.slug} />
             <h2 className={styles.text}>{title}</h2>
             <div className={styles.shortInfo}>
-              <time className={styles.date}>
-                {moment(date).format('MMMM Do YYYY')}
-              </time>
+              <time className={styles.date}>{date}</time>
             </div>
           </div>
         </section>
@@ -79,9 +76,7 @@ const HeroComment: FC<HeroProps> = ({
             <Tag text={subject.name} slug={subject.slug} />
             <h2 className={styles.text}>{title}</h2>
             <div className={styles.shortInfo}>
-              <time className={styles.date}>
-                {moment(date).format('MMMM Do YYYY')}
-              </time>
+              <time className={styles.date}>{date}</time>
             </div>
           </motion.div>
         </section>

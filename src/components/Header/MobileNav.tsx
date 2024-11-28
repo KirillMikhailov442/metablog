@@ -7,7 +7,7 @@ import Input from '@components/UI/Input/Input';
 import CheckBox from '@components/UI/CheckBox/CheckBox';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
 import { IoLanguage, IoSearch } from 'react-icons/io5';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
@@ -20,6 +20,8 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { ItemType } from 'antd/es/menu/interface';
 import { useTranslations } from 'next-intl';
 import { Link, useRouter } from '@/navigation';
+import getLocale, { Locales } from '@helpers/getLocale';
+import Params from '@/types/params';
 
 const listVariants = {
   visible: {
@@ -42,9 +44,11 @@ const itemVariants = {
   },
 };
 
-const getSubjects = async () => {
+const getSubjects = async (locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<SubjectEntrySkeleton>({
     content_type: 'subjects',
+    locale: localeForReq,
   });
   return response.items;
 };
@@ -56,6 +60,7 @@ const MobileNav: FC = () => {
   const dispatch = useAppDispatch();
   const { replace } = useRouter();
   const navRef = useRef<HTMLDivElement>(null);
+  const { locale } = useParams<Params>();
 
   const closeNav = (area: EventTarget) => {
     if (!navRef.current?.contains(area as Node)) {
@@ -67,7 +72,7 @@ const MobileNav: FC = () => {
     replace(
       {
         pathname: pathName,
-        // params,
+        params,
       },
       { locale: lang },
     );
@@ -97,7 +102,7 @@ const MobileNav: FC = () => {
 
   useEffect(() => {
     const request = async () => {
-      const data = await getSubjects();
+      const data = await getSubjects(locale);
       const newList: MenuProps['items'] = await data.map(
         ({ fields }, index) => ({
           label: (
@@ -105,7 +110,7 @@ const MobileNav: FC = () => {
               onClick={() => dispatch(hideComponent('mobileNavList'))}
               href={`/subjects/${fields.slug}`}
             >
-              {fields.name}
+              {locale == 'ru' ? fields.nameRU : fields.name}
             </Link>
           ),
           key: index,

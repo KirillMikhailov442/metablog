@@ -15,11 +15,31 @@ import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
 import { CircularProgress } from '@mui/material';
 import Item from './Item';
 import { useTranslations } from 'next-intl';
+import getLocale, { Locales } from '@helpers/getLocale';
+import { useParams } from 'next/navigation';
+import Params from '@/types/params';
 
-const getLectures = async (text: string) => {
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+import 'dayjs/locale/en';
+import 'dayjs/locale/zh';
+
+const getLectures = async (text: string, locale: Locales) => {
+  const localeForReq = getLocale(locale);
+
+  if (locale == 'ru') {
+    const response = await client.getEntries<LectureEntrySkeleton>({
+      content_type: 'lectures',
+      'fields.titleRU[match]': text,
+      locale: 'en-US',
+    });
+    return response.items;
+  }
+
   const response = await client.getEntries<LectureEntrySkeleton>({
     content_type: 'lectures',
     'fields.title[match]': text,
+    locale: localeForReq,
   });
   return response.items;
 };
@@ -35,9 +55,10 @@ const Searchbar = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [text, setText] = useState('');
   const [lectures, setLectures] = useState<
-    Pick<ILecture, 'title' | 'date' | 'slug'>[]
+    Pick<ILecture, 'title' | 'date' | 'slug' | 'subject'>[]
   >([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { locale } = useParams<Params>();
   const t = useTranslations('searchbar');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,22 +70,22 @@ const Searchbar = () => {
     push(`/lectures?query=${text}`);
   };
 
-  const closeSearchBar = (area: any) => {
-    if (!searchBarWrapperRef.current?.contains(area)) {
+  const closeSearchBar = (area: EventTarget) => {
+    if (!searchBarWrapperRef.current?.contains(area as Node)) {
       dispatch(hideComponent('searchbar'));
     }
   };
 
   const handleChange = async () => {
     setIsLoading(true);
-    const data = await getLectures(text);
-    const newList: Pick<ILecture, 'title' | 'date' | 'slug'>[] = data.map(
-      lecture => ({
-        title: lecture.fields.title,
-        date: lecture.fields.date,
+    const data = await getLectures(text, locale);
+    const newList: Pick<ILecture, 'title' | 'date' | 'slug' | 'subject'>[] =
+      data.map(lecture => ({
+        title: locale == 'ru' ? lecture.fields.titleRU : lecture.fields.title,
+        date: dayjs(lecture.sys.createdAt).locale(locale).format('D MMMM YYYY'),
+        subject: lecture.fields.subject,
         slug: lecture.fields.slug,
-      }),
-    );
+      }));
 
     setLectures(newList);
     setIsLoading(false);

@@ -27,10 +27,14 @@ import { ItemType } from 'antd/es/menu/interface';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
+import getLocale, { Locales } from '@helpers/getLocale';
+import Params from '@/types/params';
 
-const getSubjects = async () => {
+const getSubjects = async (locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<SubjectEntrySkeleton>({
     content_type: 'subjects',
+    locale: localeForReq,
   });
   return response.items;
 };
@@ -47,6 +51,7 @@ const Header: FC = () => {
   const isShowSearchBar = useAppSelector(
     state => state.showComponents.searchbar,
   );
+  const { locale } = useParams<Params>();
 
   const [listOfSubjects, setListOfSubjects] = useState<MenuProps['items']>([
     {
@@ -82,10 +87,14 @@ const Header: FC = () => {
 
   useEffect(() => {
     const request = async () => {
-      const data = await getSubjects();
+      const data = await getSubjects(locale);
       const newList: MenuProps['items'] = await data.map(
         ({ fields }, index) => ({
-          label: <Link href={`/subjects/${fields.slug}`}>{fields.name}</Link>,
+          label: (
+            <Link href={`/subjects/${fields.slug}`}>
+              {locale == 'ru' ? fields.nameRU : fields.name}
+            </Link>
+          ),
           key: index,
         }),
       );

@@ -4,11 +4,12 @@ import { ISubject, SubjectEntrySkeleton } from './subject';
 
 export interface LectureFields {
   title: contentful.EntryFieldTypes.Text;
+  titleRU: contentful.EntryFieldTypes.Text;
   slug: contentful.EntryFieldTypes.Text;
   subject: SubjectEntrySkeleton;
-  date: contentful.EntryFieldTypes.Date;
   image: contentful.Asset;
   content: Document;
+  contentRU: Document;
   files?: contentful.Asset[];
 }
 
@@ -19,10 +20,12 @@ export type LectureEntrySkeleton = {
 
 export interface ILecture {
   title: string;
+  titleRU: string;
   slug: string;
   subject: { fields: ISubject };
   date: string;
   image: contentful.Asset;
   content: Document;
+  contentRU: Document;
   files?: contentful.Asset[] | undefined;
 }

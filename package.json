@@ -24,6 +24,7 @@
     "antd": "^5.22.2",
     "clsx": "^2.1.1",
     "contentful-management": "^11.39.1",
+    "dayjs": "^1.11.13",
     "formik": "^2.4.6",
     "framer-motion": "^11.11.17",
     "i18next": "^24.0.2",

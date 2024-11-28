@@ -3,7 +3,6 @@
 import { ILecture } from '@/types/lecture';
 import styles from './SearchBar.module.scss';
 import { FC } from 'react';
-import moment from 'moment';
 import { useRouter } from '@/navigation';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import { hideComponent } from '@store/slices/showComponents';
@@ -29,7 +28,7 @@ const Item: FC<Pick<ILecture, 'title' | 'date' | 'slug'>> = ({
       className={styles.item}
     >
       <h4>
-        {title} <time>{moment(date).format('MMMM Do YYYY')}</time>
+        {title} <time>{date}</time>
       </h4>
     </motion.li>
   );

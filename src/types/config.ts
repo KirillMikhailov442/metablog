@@ -4,7 +4,9 @@ export interface ConfigFields {
   email?: contentful.EntryFieldTypes.Text;
   phone: contentful.EntryFieldTypes.Text;
   shortDescription: Document;
+  shortDescriptionRU: Document;
   description: Document;
+  descriptionRU: Document;
 }
 
 export type ConfigEntrySkeleton = {
@@ -16,5 +18,7 @@ export interface IConfig {
   email?: string;
   phone: string;
   shortDescription: string;
+  shortDescriptionRU: string;
   description: Document;
+  descriptionRU: Document;
 }

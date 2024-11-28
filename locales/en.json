@@ -8,7 +8,7 @@
     },
     
     "footer": {
-      "about": "Website about Gorodilov's lectures in three languages: Russian, English and Chinese",
+      "about": "About Us",
       "email": "Email: ",
       "tel": "Phone: ",
       "quickLinks": "Quick Links",
@@ -66,6 +66,7 @@
       "wasFound": "Was found:",
       "lectures": "lectures",
       "moreLectures": "More Lectures:",
+      "notLectures": "Nothing found",
    "loadMoreLectures": "Load more lectures"
 
     },
@@ -73,5 +74,31 @@
     "notFoundPage": {
       "pageNotFound": "Page not found",
       "comeBack": "Come back"
-    }
-   }
+    },
+
+
+    "homeSEO":{
+  "title": "Home",
+  "description": "Page home"
+ },
+
+ "aboutSEO": {
+  "title":"About US",
+  "description": "Page about Us"
+ },
+
+ "contactSEO": {
+  "title": "Contact Us",
+  "description": "Page for contact"
+ },
+
+ "lecturesSEO": {
+  "title": "Search result",
+  "description": "Search result page"
+ },
+
+ "notFoundSEO": {
+  "title": "Page not found",
+  "description": "Page not found"
+ }
+}

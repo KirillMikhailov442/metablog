@@ -6,7 +6,6 @@ import styles from './SingleLecture.module.scss';
 import Tag from '@components/UI/Tag/Tag';
 import Image from 'next/image';
 import Adb from '@components/Adb/Adb';
-import moment from 'moment';
 
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { NextPage } from 'next';
@@ -14,12 +13,21 @@ import { useParams } from 'next/navigation';
 import client from '@/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
+import Params from '@/types/params';
+import getLocale, { Locales } from '@helpers/getLocale';
 
-const getLectue = async (slug: string) => {
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+import 'dayjs/locale/en';
+import 'dayjs/locale/zh';
+
+const getLectue = async (slug: string, locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<LectureEntrySkeleton>({
     content_type: 'lectures',
     limit: 1,
     'fields.slug': slug,
+    locale: localeForReq,
   });
   return response.items[0];
 };
@@ -27,6 +35,7 @@ const getLectue = async (slug: string) => {
 const SingleLectureScreen: NextPage = () => {
   const postRef = useRef(null);
   const { id } = useParams();
+  const { locale } = useParams<Params>();
   const { scrollYProgress } = useScroll({
     target: postRef,
   });
@@ -36,12 +45,25 @@ const SingleLectureScreen: NextPage = () => {
     restDelta: 0.001,
   });
 
-  const [pageContent, setPageContent] = useState<ILecture>();
+  const [pageContent, setPageContent] =
+    useState<
+      Pick<
+        ILecture,
+        'title' | 'date' | 'image' | 'subject' | 'content' | 'files'
+      >
+    >();
 
   useEffect(() => {
     const request = async () => {
-      const data = await getLectue(String(id));
-      await setPageContent(data.fields);
+      const data = await getLectue(String(id), locale);
+      await setPageContent({
+        title: locale == 'ru' ? data.fields.titleRU : data.fields.title,
+        date: dayjs(data.sys.createdAt).locale(locale).format('D MMMM YYYY'),
+        image: data.fields.image,
+        subject: data.fields.subject,
+        content: locale == 'ru' ? data.fields.contentRU : data.fields.content,
+        files: data.fields.files,
+      });
     };
     request();
   }, []);
@@ -59,17 +81,7 @@ const SingleLectureScreen: NextPage = () => {
           )}
           <h2 className={styles.headerText}>{pageContent?.title}</h2>
           <div className={styles.shortInfo}>
-            {/* <Image
-              className={styles.avatar}
-              width={36}
-              height={36}
-              alt="author image"
-              src={author_img}
-            />
-            <p className={styles.authorName}>Jason Francisco</p> */}
-            <time className={styles.date}>
-              {moment(pageContent?.date).format('MMMM Do YYYY')}
-            </time>
+            <time className={styles.date}>{pageContent?.date}</time>
           </div>
         </header>
         {pageContent?.image && (

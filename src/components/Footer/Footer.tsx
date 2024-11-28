@@ -15,39 +15,63 @@ import { ISubject, SubjectEntrySkeleton } from '@/types/subject';
 import { IoLogoVercel } from 'react-icons/io5';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import getLocale, { Locales } from '@/utils/helpers/getLocale';
+import { useParams } from 'next/navigation';
+import Params from '@/types/params';
+import {
+  LINK_TO_FIGMA,
+  LINK_TO_GITHUB,
+  LINK_TO_TELEGRAM,
+  LINK_TO_VERCEL,
+} from '@conts/links';
 
-const getSubjects = async () => {
+const getSubjects = async (locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<SubjectEntrySkeleton>({
     content_type: 'subjects',
     limit: 5,
+    locale: localeForReq,
   });
   return response.items;
 };
 
-const getConfigData = async () => {
+const getConfigData = async (locale: Locales) => {
+  const localeForReq = getLocale(locale);
   const response = await client.getEntries<ConfigEntrySkeleton>({
     content_type: 'config',
+    locale: localeForReq,
   });
   return response.items[0];
 };
 
 const Footer: FC = () => {
-  const [listSubjects, setListSubjects] = useState<ISubject[]>([]);
+  const [listSubjects, setListSubjects] = useState<
+    Omit<ISubject, 'nameRU' | 'descriptionRU'>[]
+  >([]);
+  const { locale } = useParams<Params>();
   const [config, setCofnig] =
     useState<Pick<IConfig, 'email' | 'phone' | 'shortDescription'>>();
 
   useEffect(() => {
     const request = async () => {
-      const subjectsData = await getSubjects();
-      const newList: ISubject[] = await subjectsData.map(subject => ({
-        slug: subject.fields.slug,
-        name: subject.fields.name,
-        image: subject.fields.image,
-      }));
+      const subjectsData = await getSubjects(locale);
+      const newList: Omit<ISubject, 'nameRU' | 'descriptionRU'>[] =
+        await subjectsData.map(subject => ({
+          slug: subject.fields.slug,
+          name: locale == 'ru' ? subject.fields.nameRU : subject.fields.name,
+          image: subject.fields.image,
+        }));
       setListSubjects(newList);
 
-      const configData = await getConfigData();
-      setCofnig(configData.fields);
+      const configData = await getConfigData(locale);
+      setCofnig({
+        email: configData.fields.email,
+        phone: configData.fields.phone,
+        shortDescription:
+          locale == 'ru'
+            ? configData.fields.shortDescriptionRU
+            : configData.fields.shortDescription,
+      });
     };
     request();
   }, []);
@@ -150,23 +174,36 @@ const Footer: FC = () => {
               <li>
                 <Link
                   className={styles.copyrightLinksItem}
-                  href={'https://github.com/KirillMikhailov442/meta-blog'}
+                  href={LINK_TO_GITHUB}
+                  target="_blank"
                 >
                   <FaGithub size={25} />
                 </Link>
               </li>
               <li>
-                <Link className={styles.copyrightLinksItem} href={'/'}>
+                <Link
+                  className={styles.copyrightLinksItem}
+                  href={LINK_TO_VERCEL}
+                  target="_blank"
+                >
                   <IoLogoVercel size={25} />
                 </Link>
               </li>
               <li>
-                <Link className={styles.copyrightLinksItem} href={'/'}>
+                <Link
+                  className={styles.copyrightLinksItem}
+                  href={LINK_TO_FIGMA}
+                  target="_blank"
+                >
                   <FaFigma size={25} />
                 </Link>
               </li>
               <li>
-                <Link className={styles.copyrightLinksItem} href={'/'}>
+                <Link
+                  className={styles.copyrightLinksItem}
+                  href={LINK_TO_TELEGRAM}
+                  target="_blank"
+                >
                   <FaTelegramPlane size={25} />
                 </Link>
               </li>

@@ -8,7 +8,7 @@
     },
     
     "footer": {
-      "about": "戈罗季洛夫讲座的网站，提供俄语、英语和中文三种语言",
+      "about": "关于我们页面",
       "email": "电子邮件: ",
       "tel": "电话号码: ",
       "quickLinks": "快速链接",
@@ -65,6 +65,7 @@
       "wasFound": "被发现:",
       "lectures": "教训",
       "moreLectures": "更多讲座:",
+      "notLectures": "什么也没找到",
    "loadMoreLectures": "加载更多讲座"
 
     },
@@ -72,5 +73,30 @@
     "notFoundPage": {
       "pageNotFound": "找不到页面",
       "comeBack": "回去"
-    }
-   }
+    },
+
+    "homeSEO":{
+  "title": "主页",
+  "description": "主页"
+ },
+
+ "aboutSEO": {
+  "title":"关于我们页面",
+  "description": "关于我们页面"
+ },
+
+ "contactSEO": {
+  "title": "联系我们页面",
+  "description": "联系我们页面"
+ },
+
+ "lecturesSEO": {
+  "title": "搜索结果",
+  "description": "搜索结果"
+ },
+
+ "notFoundSEO": {
+  "title": "找不到页面",
+  "description": "找不到页面"
+ }
+}

@@ -24,6 +24,8 @@
       "@screens/*": ["./src/screens/*"],
       "@components/*": ["./src/components/*"],
       "@store/*": ["./src/store/*"],
+      "@helpers/*": ["./src/utils/helpers/*"],
+      "@conts/*": ["./src/utils/constants/*"],
       "@UI/*": ["./src/components/UI/*"],
       "@Layouts/*": ["./src/components/Layouts/*"],
       "@/*": ["./src/*"],

@@ -8,7 +8,7 @@
  },
  
  "footer": {
-   "about": "Сайт о лекциях Городилова на трех языках: русском, английском и китайском",
+   "about": "О нас",
    "email": "Почта: ",
    "tel": "Номер Телефона: ",
    "quickLinks": "Быстрые ссылки",
@@ -65,11 +65,37 @@
    "wasFound": "Было найдено:",
    "lectures": "лекций",
    "moreLectures": "Больше лекций:",
+   "notLectures": "Ничего не найдена",
    "loadMoreLectures": "Загрузить больше лекций"
  },
 
  "notFoundPage": {
    "pageNotFound": "Страница не найдена",
    "comeBack": "вернуться обратно"
+ },
+
+ "homeSEO":{
+  "title": "Главная",
+  "description": "Главная страница"
+ },
+
+ "aboutSEO": {
+  "title":"О нас",
+  "description": "Страница о нас"
+ },
+
+ "contactSEO": {
+  "title": "Контакт",
+  "description": "Страница с контактом с нами"
+ },
+
+ "lecturesSEO": {
+  "title": "Результат поисков",
+  "description": "Страница с результатами поиска"
+ },
+
+ "notFoundSEO": {
+  "title": "Страница не найдена",
+  "description": "Страница не найдена"
  }
 }
