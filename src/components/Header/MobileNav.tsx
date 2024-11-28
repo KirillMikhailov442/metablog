@@ -67,8 +67,7 @@ const MobileNav: FC = () => {
     replace(
       {
         pathname: pathName,
-        // @ts-ignore
-        params,
+        // params,
       },
       { locale: lang },
     );
@@ -230,13 +229,3 @@ const MobileNav: FC = () => {
 };
 
 export default MobileNav;
-function replace(
-  arg0: {
-    pathname: string;
-    // @ts-ignore
-    params: any;
-  },
-  arg1: { locale: string },
-) {
-  throw new Error('Function not implemented.');
-}

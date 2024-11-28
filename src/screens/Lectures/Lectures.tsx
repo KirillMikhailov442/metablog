@@ -10,6 +10,7 @@ import client from '@/contentful';
 import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
 import { useSearchParams } from 'next/navigation';
 import Card from '@components/Card/Card';
+import { useTranslations } from 'next-intl';
 
 const getLectures = async (text: string, limit: number) => {
   const response = await client.getEntries<LectureEntrySkeleton>({
@@ -28,6 +29,7 @@ const LecturesScreen: FC = () => {
   const [listOfLectures, setListLectures] = useState<ILecture[]>([]);
   const [paginationNumber, setPaginationNumber] = useState(10);
   const [lecturesTotal, setLecturesTotal] = useState(0);
+  const t = useTranslations('lecturesPage');
 
   useEffect(() => {
     const request = async () => {
@@ -49,12 +51,12 @@ const LecturesScreen: FC = () => {
   return (
     <div className="main__container">
       <TitlePage
-        title={`Поиск на запрос: ${queryParam}`}
+        title={`${t('searchByRequest')} ${queryParam}`}
         count={listOfLectures.length}
       />
       <section className={styles.listOfPosts}>
         {listOfLectures.length ? (
-          <h5 className={styles.title}>Latest Posts</h5>
+          <h5 className={styles.title}>{t('moreLectures')}</h5>
         ) : (
           'Loading...'
         )}
@@ -77,7 +79,7 @@ const LecturesScreen: FC = () => {
               className={styles.buttonView}
               var="outline"
             >
-              Загрузить остальные лекции
+              {t('loadMoreLectures')}
             </Button>
           </footer>
         )}

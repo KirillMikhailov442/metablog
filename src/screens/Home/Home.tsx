@@ -9,6 +9,7 @@ import Subjects from '@components/Subjects/Subjects';
 import client from '@/contentful';
 import Card from '@components/Card/Card';
 import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
+import { useTranslations } from 'next-intl';
 
 const getLectures = async (limit: number) => {
   const response = await client.getEntries<LectureEntrySkeleton>({
@@ -24,6 +25,7 @@ const HomeScreen: FC = () => {
   const [listOfLectures, setListLectures] = useState<ILecture[]>([]);
   const [paginationNumber, setPaginationNumber] = useState(10);
   const [lecturesTotal, setLecturesTotal] = useState(0);
+  const t = useTranslations('homePage');
 
   useEffect(() => {
     const request = async () => {
@@ -58,7 +60,7 @@ const HomeScreen: FC = () => {
       <Subjects />
       <div className="main__container">
         <section className={styles.listOfPosts}>
-          <h5 className={styles.title}>Latest Posts</h5>
+          <h5 className={styles.title}>{t('moreLectures')}</h5>
           <ul className={styles.grid}>
             {[...listOfLectures.slice(1)].map((lecture, index) => (
               <Card
@@ -78,7 +80,7 @@ const HomeScreen: FC = () => {
                 className={styles.buttonView}
                 var="outline"
               >
-                Загрузить остальные лекции
+                {t('loadMoreLectures')}
               </Button>
             </footer>
           )}

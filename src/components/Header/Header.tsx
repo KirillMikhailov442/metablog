@@ -59,7 +59,6 @@ const Header: FC = () => {
     replace(
       {
         pathname: pathName,
-        // @ts-ignore
         params,
       },
       { locale: lang },

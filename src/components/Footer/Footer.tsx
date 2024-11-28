@@ -14,6 +14,7 @@ import { ConfigEntrySkeleton, IConfig } from '@/types/config';
 import { ISubject, SubjectEntrySkeleton } from '@/types/subject';
 import { IoLogoVercel } from 'react-icons/io5';
 import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 const getSubjects = async () => {
   const response = await client.getEntries<SubjectEntrySkeleton>({
@@ -51,51 +52,53 @@ const Footer: FC = () => {
     request();
   }, []);
 
+  const t = useTranslations('footer');
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <ul className={styles.content}>
           <li className={styles.about}>
-            <h6 className={styles.title}>About</h6>
+            <h6 className={styles.title}>{t('about')}</h6>
             <p className={styles.text}>{config?.shortDescription}</p>
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <b>Email : </b>
+                <b>{t('email')}</b>
                 {config?.email}
               </li>
               <li className={styles.listItem}>
-                <b>Phone : </b>
+                <b>{t('tel')}</b>
                 {config?.phone}
               </li>
             </ul>
           </li>
           <li className={styles.listOfLinks}>
-            <h6 className={styles.title}>Quick Link</h6>
+            <h6 className={styles.title}>{t('quickLinks')}</h6>
             <ul className={styles.list}>
               <li className={styles.listItem}>
                 <Link className={styles.listLink} href={'/'}>
-                  Home
+                  {t('listOfLinks.home')}
                 </Link>
               </li>
               <li className={styles.listItem}>
                 <Link className={styles.listLink} href={'/about'}>
-                  About
+                  {t('listOfLinks.about')}
                 </Link>
               </li>
               <li className={styles.listItem}>
                 <Link className={styles.listLink} href={'/lectures'}>
-                  Lectues
+                  {t('listOfLinks.lectures')}
                 </Link>
               </li>
               <li className={styles.listItem}>
                 <Link className={styles.listLink} href={'/contact'}>
-                  Contact
+                  {t('listOfLinks.contact')}
                 </Link>
               </li>
             </ul>
           </li>
           <li className={styles.listOfLinks}>
-            <h6 className={styles.title}>Subjects</h6>
+            <h6 className={styles.title}>{t('subjects')}</h6>
             <ul className={styles.list}>
               {listSubjects.map((subject, index) => (
                 <li className={styles.listItem} key={index}>

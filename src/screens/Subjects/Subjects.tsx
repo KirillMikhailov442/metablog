@@ -8,6 +8,7 @@ import { useParams } from 'next/navigation';
 import Card from '@components/Card/Card';
 import { ISubject, SubjectEntrySkeleton } from '@/types/subject';
 import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
+import { useTranslations } from 'next-intl';
 
 const getSubject = async (slug: string) => {
   const response = await client.getEntries<SubjectEntrySkeleton>({
@@ -33,6 +34,7 @@ const SubjectsScreen: NextPage = () => {
   const [listOfLectures, setListOfLectures] = useState<ILecture[]>([]);
   const [subject, setSubject] = useState<ISubject>();
   const { id } = useParams();
+  const t = useTranslations('subjectPage');
 
   useEffect(() => {
     const request = async () => {
@@ -72,7 +74,9 @@ const SubjectsScreen: NextPage = () => {
         <h5 className={styles.description}>{subject?.description}</h5>
       </div>
       <div className={styles.container}>
-        <h4 className={styles.count}>Всего лекций: {listOfLectures.length}</h4>
+        <h4 className={styles.count}>
+          {t('totalLectures')} {listOfLectures.length}
+        </h4>
         <div className={styles.grid}>
           {listOfLectures.map((lecture, index) => (
             <Card

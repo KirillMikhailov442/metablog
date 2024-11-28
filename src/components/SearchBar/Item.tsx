@@ -4,14 +4,16 @@ import { ILecture } from '@/types/lecture';
 import styles from './SearchBar.module.scss';
 import { FC } from 'react';
 import moment from 'moment';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import { hideComponent } from '@store/slices/showComponents';
 import { motion } from 'framer-motion';
 
-interface ItemProps extends Pick<ILecture, 'title' | 'date' | 'slug'> {}
-
-const Item: FC<ItemProps> = ({ title, date, slug }) => {
+const Item: FC<Pick<ILecture, 'title' | 'date' | 'slug'>> = ({
+  title,
+  date,
+  slug,
+}) => {
   const { push } = useRouter();
   const dispatch = useAppDispatch();
 

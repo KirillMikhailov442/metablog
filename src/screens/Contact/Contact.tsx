@@ -15,10 +15,12 @@ import emailjs from '@emailjs/browser';
 
 import success_sending_img from '@assets/success-sending-mail.png';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 const ContactScreen: FC = () => {
   const [isSendEmail, setIsSendEmail] = useState(false);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations('contactPage');
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -26,12 +28,12 @@ const ContactScreen: FC = () => {
       message: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().trim().required('Enter name'),
+      name: Yup.string().trim().required(t('form.enterName')),
       email: Yup.string()
         .trim()
-        .email('Некорекктный e-mail')
-        .required('Enter e-mail'),
-      message: Yup.string().trim().required('Напишите что-нибудь'),
+        .email(t('form.InvalidEmail'))
+        .required(t('form.enterEmail')),
+      message: Yup.string().trim().required(t('form.writeSomething')),
     }),
     onSubmit: async (values, { resetForm }) => {
       if (!loading) {
@@ -50,7 +52,7 @@ const ContactScreen: FC = () => {
             process.env.EMAILJS_USER_ID,
           )
           .then(() => setIsSendEmail(true))
-          .catch(() => alert('Что-то пошло не так'))
+          .catch(() => alert('Error'))
           .finally(() => setLoading(false));
 
         resetForm();
@@ -66,14 +68,14 @@ const ContactScreen: FC = () => {
             animate={{ y: 0, opacity: 1 }}
             className={styles.title}
           >
-            Contact Us
+            {t('title')}
           </motion.h2>
           <motion.h6
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             className={styles.subtitle}
           >
-            We try to read your messages as quickly as possible
+            {t('subtitle')}
           </motion.h6>
           <motion.form
             initial={{ y: 20, opacity: 0, scale: 0.2 }}
@@ -83,7 +85,7 @@ const ContactScreen: FC = () => {
             className={styles.form}
           >
             <Input
-              placeholder="Your Name"
+              placeholder={t('form.yourName')}
               var="outline"
               icon={<IoPersonCircle size={22} />}
               onChange={formik.handleChange}
@@ -93,7 +95,7 @@ const ContactScreen: FC = () => {
               name="name"
             />
             <Input
-              placeholder="Your Email"
+              placeholder={t('form.yourEmail')}
               var="outline"
               icon={<MdOutlineEmail size={22} />}
               onChange={formik.handleChange}
@@ -105,14 +107,16 @@ const ContactScreen: FC = () => {
             <Textarea
               className={styles.textarea}
               var="outline"
-              placeholder="Your Text"
+              placeholder={t('form.enterMessage')}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.message}
               error={formik.errors.message}
               name="message"
             />
-            {!loading && <Button className={styles.button}>Отправить</Button>}
+            {!loading && (
+              <Button className={styles.button}>{t('form.send')}</Button>
+            )}
             {loading && (
               <Button
                 className={styles.button}
@@ -130,13 +134,13 @@ const ContactScreen: FC = () => {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            Письмо успешно отправлено
+            {t('form.success')}
           </motion.h3>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            Мы обязательно прочитаем его
+            {t('form.read')}
           </motion.p>
           <Image
             src={success_sending_img}

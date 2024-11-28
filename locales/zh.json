@@ -1,0 +1,76 @@
+{
+    "header": {
+       "home": "主页",
+       "about": "关于我们页面",
+       "subjects": "教训",
+       "contact": "联系我们",
+       "searchbarPlaceholder": "搜索..."
+    },
+    
+    "footer": {
+      "about": "戈罗季洛夫讲座的网站，提供俄语、英语和中文三种语言",
+      "email": "电子邮件: ",
+      "tel": "电话号码: ",
+      "quickLinks": "快速链接",
+      "listOfLinks": {
+         "home": "主页",
+         "about": "关于我们页面",
+         "lectures": "教训",
+         "contact": "联系我们"
+      },
+      "subjects": "教训"
+    },
+   
+    "searchbar": {
+      "search":"发送"
+    },
+   
+    "adb": {
+      "Advertisement": "广告",
+      "youCanPlaceAds": "您可以在这里做广告"
+    },
+   
+   
+    "contactPage": {
+      "title": "联系我们",
+      "subtitle": "我们尝试尽快阅读您的消息",
+      "form": {
+         "yourName": "你的名字",
+         "enterName": "输入姓名",
+         "yourEmail": "你的电子邮件",
+         "enterEmail": "输入电子邮件",
+         "InvalidEmail": "邮件错误",
+         "message": "信息",
+         "enterMessage": "输入您的留言",
+         "send": "发送",
+        "success": "信件已成功发送",
+        "read": "我们一定会读它"
+      }
+    },
+   
+    "homePage": {
+      "moreLectures": "更多讲座",
+   "loadMoreLectures": "加载更多讲座"
+    },
+   
+    "subjectPage": {
+      "totalLectures": "总讲座数",
+   "loadMoreLectures": "加载更多讲座"
+
+    },
+   
+    "lecturesPage": {
+      "searchByRequest": "按要求搜索",
+      "home": "主页",
+      "wasFound": "被发现:",
+      "lectures": "教训",
+      "moreLectures": "更多讲座:",
+   "loadMoreLectures": "加载更多讲座"
+
+    },
+   
+    "notFoundPage": {
+      "pageNotFound": "找不到页面",
+      "comeBack": "回去"
+    }
+   }

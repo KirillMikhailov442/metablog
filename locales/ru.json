@@ -5,5 +5,71 @@
     "subjects": "Предметы",
     "contact": "Контакт",
     "searchbarPlaceholder": "Поиск..."
- }   
+ },
+ 
+ "footer": {
+   "about": "Сайт о лекциях Городилова на трех языках: русском, английском и китайском",
+   "email": "Почта: ",
+   "tel": "Номер Телефона: ",
+   "quickLinks": "Быстрые ссылки",
+   "listOfLinks": {
+      "home": "Главная",
+      "about": "О нас",
+      "lectures": "Предметы",
+      "contact": "Контакт"
+   },
+   "subjects": "Предметы"
+ },
+
+ "searchbar": {
+   "search":"Найти"
+ },
+
+ "adb": {
+   "Advertisement": "Реклама",
+   "youCanPlaceAds": "Вы можете разместить рекламу тут"
+ },
+
+
+ "contactPage": {
+   "title": "Свяжитесь с нами",
+   "subtitle": "Мы стараемся читать ваши сообщения как можно быстрее",
+   "form": {
+      "yourName": "Ваше имя",
+      "enterName": "Введите имя",
+      "yourEmail": "Ваша почта",
+      "enterEmail": "Введите почту",
+      "InvalidEmail": "Некорректная почта",
+      "message": "Сообщение",
+      "enterMessage": "Введите сообщение",
+      "writeSomething": "Write something",
+      "send": "Отправить",
+      "success": "Письмо успешно отправлено",
+      "read": "Мы обязательно прочитаем его"
+   }
+ },
+
+ "homePage": {
+   "moreLectures": "Больше лекций",
+   "loadMoreLectures": "Загрузить больше лекций"
+ },
+
+ "subjectPage": {
+   "totalLectures": "Всего лекций",
+   "loadMoreLectures": "Загрузить больше лекций"
+ },
+
+ "lecturesPage": {
+   "searchByRequest": "Поиск по запросу",
+   "home": "Главная",
+   "wasFound": "Было найдено:",
+   "lectures": "лекций",
+   "moreLectures": "Больше лекций:",
+   "loadMoreLectures": "Загрузить больше лекций"
+ },
+
+ "notFoundPage": {
+   "pageNotFound": "Страница не найдена",
+   "comeBack": "вернуться обратно"
+ }
 }

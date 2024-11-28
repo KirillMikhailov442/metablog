@@ -1,9 +1,77 @@
 {
     "header": {
-    "home": "Home",
-    "about": "About Us",
-    "subjects": "Subjects",
-    "contact": "Contact Us",
-    "searchbarPlaceholder": "Search..."
- }   
-}
+       "home": "Home",
+       "about": "About Us",
+       "subjects": "Subjects",
+       "contact": "Contact",
+       "searchbarPlaceholder": "Search..."
+    },
+    
+    "footer": {
+      "about": "Website about Gorodilov's lectures in three languages: Russian, English and Chinese",
+      "email": "Email: ",
+      "tel": "Phone: ",
+      "quickLinks": "Quick Links",
+      "listOfLinks": {
+         "home": "Home",
+         "about": "About Us",
+         "lectures": "Subjects",
+         "contact": "Contact"
+      },
+      "subjects": "Subjects"
+    },
+   
+    "searchbar": {
+      "search":"Search"
+    },
+   
+    "adb": {
+      "Advertisement": "Advertisement",
+      "youCanPlaceAds": "You can place ads"
+    },
+   
+   
+    "contactPage": {
+      "title": "Contact Us",
+      "subtitle": "We try to read your messages as quickly as possible.",
+      "form": {
+         "yourName": "Your name",
+         "enterName": "Enter name",
+         "yourEmail": "Your email",
+         "enterEmail": "Enter email",
+         "InvalidEmail": "invalid email",
+         "message": "Message",
+         "enterMessage": "Enter message",
+         "send": "Send",
+         "success": "The letter has been sent successfully",
+         "read": "We will definitely read it."
+      }
+    },
+   
+    "homePage": {
+      "moreLectures": "More lectures",
+   "loadMoreLectures": "Load more lectures"
+
+    },
+   
+    "subjectPage": {
+      "totalLectures": "Total lectures",
+   "loadMoreLectures": "Load more lectures"
+
+    },
+   
+    "lecturesPage": {
+      "searchByRequest": "Search by request",
+      "home": "Home",
+      "wasFound": "Was found:",
+      "lectures": "lectures",
+      "moreLectures": "More Lectures:",
+   "loadMoreLectures": "Load more lectures"
+
+    },
+   
+    "notFoundPage": {
+      "pageNotFound": "Page not found",
+      "comeBack": "Come back"
+    }
+   }

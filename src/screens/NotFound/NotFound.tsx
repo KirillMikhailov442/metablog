@@ -7,9 +7,11 @@ import Image from 'next/image';
 import not_found_img from '@assets/not-found.png';
 import Button from '@components/UI/Button/Button';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 const NotFoundScreen: FC = () => {
   const { back } = useRouter();
+  const t = useTranslations('notFoundPage');
   return (
     <div className={styles.container}>
       <Image
@@ -17,8 +19,8 @@ const NotFoundScreen: FC = () => {
         src={not_found_img}
         alt="not found image"
       />
-      <h2>Page not found</h2>
-      <Button onClick={() => back()}>Come back</Button>
+      <h2>{t('pageNotFound')}</h2>
+      <Button onClick={() => back()}>{t('comeBack')}</Button>
     </div>
   );
 };

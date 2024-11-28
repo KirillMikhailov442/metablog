@@ -4,6 +4,7 @@ import { Link } from '@/navigation';
 import styles from './TitlePage.module.scss';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
+import { useTranslations } from 'next-intl';
 
 export interface TitlePageProps {
   title: string;
@@ -11,6 +12,7 @@ export interface TitlePageProps {
 }
 
 const TitlePage: FC<TitlePageProps> = ({ title, count }) => {
+  const t = useTranslations('lecturesPage');
   return (
     <motion.section
       initial={{ y: '20%', opacity: 0, scale: 0.6 }}
@@ -20,10 +22,10 @@ const TitlePage: FC<TitlePageProps> = ({ title, count }) => {
       <h3 className={styles.title}>{title}</h3>
       <p className={styles.subtitle}>
         <span className={styles.home}>
-          <Link href={'/'}>Home</Link>
+          <Link href={'/'}>{t('home')}</Link>
         </span>
         <span>
-          Было найдено: <b>{count}</b> лекций
+          {t('wasFound')} <b>{count}</b> {t('lectures')}
         </span>
       </p>
     </motion.section>

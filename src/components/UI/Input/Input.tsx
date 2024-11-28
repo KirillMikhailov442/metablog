@@ -1,4 +1,10 @@
-import React, { FC, HTMLAttributes, useId } from 'react';
+import React, {
+  FC,
+  HTMLAttributes,
+  RefAttributes,
+  RefObject,
+  useId,
+} from 'react';
 import styles from './Input.module.scss';
 import clsx from 'clsx';
 
@@ -10,7 +16,7 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   error?: string;
   name?: string;
   list?: string;
-  ref?: any;
+  ref?: RefObject<HTMLInputElement>;
 }
 
 const InputDefault: FC<InputProps> = (

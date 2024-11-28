@@ -9,11 +9,12 @@ import Button from '@UI/Button/Button';
 import useAppDispatch from '@/hooks/useAppDispatch';
 import useAppSelector from '@/hooks/useAppSelector';
 import { hideComponent } from '@store/slices/showComponents';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import client from '@/contentful';
 import { ILecture, LectureEntrySkeleton } from '@/types/lecture';
 import { CircularProgress } from '@mui/material';
 import Item from './Item';
+import { useTranslations } from 'next-intl';
 
 const getLectures = async (text: string) => {
   const response = await client.getEntries<LectureEntrySkeleton>({
@@ -37,6 +38,7 @@ const Searchbar = () => {
     Pick<ILecture, 'title' | 'date' | 'slug'>[]
   >([]);
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations('searchbar');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -86,12 +88,12 @@ const Searchbar = () => {
               className={styles.form}
             >
               <Input
-                onChange={e => setText(String(e.target.value))}
+                onChange={e => setText(e.currentTarget.value)}
                 value={text}
                 ref={inputRef}
                 className={styles.input}
               />
-              <Button className={styles.button}>Найти</Button>
+              <Button className={styles.button}>{t('search')}</Button>
             </form>
             {lectures.length > 0 && (
               <div className={styles.result}>
