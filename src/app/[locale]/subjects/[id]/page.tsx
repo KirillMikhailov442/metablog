@@ -1,9 +1,13 @@
 import client from '@/contentful';
+import { locales } from '@/i18n';
 import { PageProps } from '@/types/pageProps';
 import { SubjectEntrySkeleton } from '@/types/subject';
 import getLocale from '@helpers/getLocale';
 import SubjectsScreen from '@screens/Subjects/Subjects';
 import { Metadata, NextPage } from 'next';
+export function generateStaticParams() {
+  return locales.map(locale => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
@@ -37,4 +41,5 @@ export async function generateMetadata({
 }
 
 const SubjectsPage: NextPage = () => <SubjectsScreen />;
+
 export default SubjectsPage;

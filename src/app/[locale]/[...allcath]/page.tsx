@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, NextPage } from 'next';
 import NotFoundPage from '../not-found';
 import { getTranslations } from 'next-intl/server';
 import { PageProps } from '@/types/pageProps';
@@ -15,5 +15,5 @@ export async function generateMetadata({
   };
 }
 
-const AllCath = () => <NotFoundPage />;
+const AllCath: NextPage = () => <NotFoundPage />;
 export default AllCath;

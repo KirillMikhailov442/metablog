@@ -41,7 +41,6 @@ const getSubjects = async (locale: Locales) => {
 
 const Header: FC = () => {
   const pathName = usePathname();
-  const params = useParams();
   const t = useTranslations('header');
   const dispatch = useAppDispatch();
   const { replace } = useRouter();
@@ -64,7 +63,6 @@ const Header: FC = () => {
     replace(
       {
         pathname: pathName,
-        params,
       },
       { locale: lang },
     );

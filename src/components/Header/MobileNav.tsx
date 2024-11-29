@@ -72,7 +72,6 @@ const MobileNav: FC = () => {
     replace(
       {
         pathname: pathName,
-        params,
       },
       { locale: lang },
     );

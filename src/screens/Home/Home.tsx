@@ -60,7 +60,7 @@ const HomeScreen: FC = () => {
   return (
     <>
       <div className="main__container">
-        {listOfLectures.length && (
+        {listOfLectures.length ? (
           <Hero
             {...listOfLectures[0]}
             subject={{
@@ -71,6 +71,8 @@ const HomeScreen: FC = () => {
               slug: listOfLectures[0].subject.fields.slug,
             }}
           />
+        ) : (
+          'loading...'
         )}
       </div>
       <Subjects />

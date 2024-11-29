@@ -36,6 +36,6 @@ export async function generateMetadata({
   };
 }
 
-const LecturePage: NextPage = props => <SinglePostScreen {...props} />;
+const LecturePage: NextPage = () => <SinglePostScreen />;
 
 export default LecturePage;
