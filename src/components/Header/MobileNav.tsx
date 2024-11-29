@@ -7,7 +7,7 @@ import Input from '@components/UI/Input/Input';
 import CheckBox from '@components/UI/CheckBox/CheckBox';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { IoLanguage, IoSearch } from 'react-icons/io5';
 import useAppSelector from '@/hooks/useAppSelector';
 import useAppDispatch from '@/hooks/useAppDispatch';
@@ -19,7 +19,7 @@ import { SubjectEntrySkeleton } from '@/types/subject';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { ItemType } from 'antd/es/menu/interface';
 import { useTranslations } from 'next-intl';
-import { Link, useRouter } from '@/navigation';
+import { Link, usePathname, useRouter } from '@/navigation';
 import getLocale, { Locales } from '@helpers/getLocale';
 import Params from '@/types/params';
 
@@ -61,6 +61,7 @@ const MobileNav: FC = () => {
   const { replace } = useRouter();
   const navRef = useRef<HTMLDivElement>(null);
   const { locale } = useParams<Params>();
+  const params = useParams();
 
   const closeNav = (area: EventTarget) => {
     if (!navRef.current?.contains(area as Node)) {
@@ -72,6 +73,9 @@ const MobileNav: FC = () => {
     replace(
       {
         pathname: pathName,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        params,
       },
       { locale: lang },
     );

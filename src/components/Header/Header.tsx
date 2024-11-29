@@ -44,6 +44,7 @@ const Header: FC = () => {
   const t = useTranslations('header');
   const dispatch = useAppDispatch();
   const { replace } = useRouter();
+  const params = useParams();
   const isShowMobileNav = useAppSelector(
     state => state.showComponents.mobileNavList,
   );
@@ -63,6 +64,9 @@ const Header: FC = () => {
     replace(
       {
         pathname: pathName,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        params,
       },
       { locale: lang },
     );
