@@ -20,7 +20,7 @@
 }
 
 .form {
-  padding: 25px 40px;
+  padding: 1.2rem 2rem;
   display: flex;
   gap: 20px;
   background-color: var(--white);
@@ -78,6 +78,12 @@
   }
 }
 
+@media (max-width: $laptop) {
+  .wrapper {
+    height: calc(100dvh - $LaptopHeader);
+  }
+}
+
 @media (max-width: $tablet) {
   .searchbar {
     margin-top: 0px;
@@ -97,5 +103,21 @@
     &Content {
       max-height: 40vh;
     }
+  }
+}
+
+@media (max-width: $mobileL) {
+  .wrapper {
+    height: calc(100dvh - $MobileHeader);
+  }
+
+  .form {
+    padding: 1rem;
+  }
+
+  .result {
+    margin-top: 0px;
+    border-radius: 0px;
+    padding: 0.8rem;
   }
 }
