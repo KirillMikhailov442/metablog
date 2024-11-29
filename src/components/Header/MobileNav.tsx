@@ -176,7 +176,7 @@ const MobileNav: FC = () => {
                 </Link>
               </motion.li>
               <motion.li variants={itemVariants}>
-                <Dropdown menu={{ items: listOfSubjects }}>
+                <Dropdown menu={{ items: listOfSubjects }} placement="bottom">
                   <a onClick={e => e.preventDefault()}>
                     <Space>
                       {t('subjects')} <MdKeyboardArrowDown />
