@@ -1,4 +1,4 @@
-@import "@styles/mixins.scss";
+@import '@styles/mixins.scss';
 
 .container {
   @include container;
@@ -51,5 +51,6 @@
     box-sizing: border-box;
     max-height: 500px;
     width: auto;
+    max-width: 100%;
   }
 }

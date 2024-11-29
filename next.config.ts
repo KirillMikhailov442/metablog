@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
-import createNextIntPlugin from 'next-intl/plugin'
+import createNextIntPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntPlugin()
+const withNextIntl = createNextIntPlugin();
 
 const nextConfig: NextConfig = {
   env: {
