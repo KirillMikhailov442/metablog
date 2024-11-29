@@ -75,7 +75,11 @@ const SingleLectureScreen: NextPage = () => {
         <header className={styles.header}>
           {pageContent && (
             <Tag
-              text={String(pageContent.subject.fields.name)}
+              text={String(
+                locale == 'ru'
+                  ? pageContent.subject.fields.nameRU
+                  : pageContent.subject.fields.name,
+              )}
               slug={String(pageContent.subject.fields.slug)}
             />
           )}

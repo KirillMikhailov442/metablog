@@ -7,4 +7,7 @@
   gap: 12px;
   background-color: rgba(90, 119, 251, 0.2);
   color: #5473fc;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }

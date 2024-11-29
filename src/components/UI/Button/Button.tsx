@@ -14,6 +14,7 @@ const ButtonDefault: FC<ButtonProps> = (
   <button
     onClick={onClick}
     className={clsx(styles.button, styles.default, className)}
+    unselectable="on"
     {...props}
   >
     {children}
@@ -27,6 +28,7 @@ const ButtonOutline: FC<ButtonProps> = (
   <button
     onClick={onClick}
     className={clsx(styles.button, styles.outline, className)}
+    unselectable="on"
     {...props}
   >
     {children}

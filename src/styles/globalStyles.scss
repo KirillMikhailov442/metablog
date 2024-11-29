@@ -29,6 +29,13 @@ body {
   overflow-x: hidden;
 }
 
+img {
+  pointer-events: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 h2,
 h3,
 h4,
@@ -74,12 +81,18 @@ button {
   cursor: pointer;
   background-color: inherit;
   color: inherit;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 input {
   font-family: inherit;
   width: 100%;
   box-sizing: border-box;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 b {
@@ -92,6 +105,7 @@ p {
 
 .ant-dropdown {
   background-color: var(--white) !important;
+  max-width: 92dvw;
 }
 
 .ant-dropdown-menu {
